@@ -1,5 +1,5 @@
 <?php
-$pageTitle = $pageTitle ?? 'DailyScroll.ini';
+$pageTitle = $pageTitle ?? 'DailyScroll';
 $flashMessage = get_flash();
 ?>
 <!doctype html>
@@ -7,13 +7,13 @@ $flashMessage = get_flash();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= e($pageTitle) ?> · DailyScroll.ini</title>
+    <title><?= e($pageTitle) ?> · DailyScroll</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
 <header class="topbar">
-    <a class="brand" href="index.php"><span class="brand-mark">DS</span><span>DailyScroll<span class="accent">.ini</span></span></a>
+    <a class="brand" href="index.php"><span class="brand-mark">DS</span><span>DailyScroll</span></a>
     <nav>
         <a href="index.php">Dashboard</a>
         <a href="manhwa.php">Manhwa</a>

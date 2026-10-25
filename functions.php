@@ -39,3 +39,12 @@ function get_flash(): ?array {
 function get_folders(PDO $pdo): array {
     return $pdo->query('SELECT id, name FROM folders ORDER BY name ASC')->fetchAll();
 }
+
+function status_label(string $status): string {
+    return match ($status) {
+        'Reading' => 'Sedang dibaca',
+        'Completed' => 'Selesai dibaca',
+        'Plan to Read' => 'Ingin dibaca',
+        default => $status,
+    };
+}

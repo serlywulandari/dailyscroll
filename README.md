@@ -1,6 +1,6 @@
-# DailyScroll.ini
+# DailyScroll
 
-Website perpustakaan manhwa pribadi berbasis PHP + MySQL, cocok untuk XAMPP.
+Website pengelola koleksi dan jurnal manhwa pribadi berbasis PHP + MySQL. Website ini mencatat data dan progres secara manual; bukan platform untuk membaca chapter.
 
 ## Persyaratan
 - XAMPP (Apache dan MySQL)
@@ -11,23 +11,22 @@ Website perpustakaan manhwa pribadi berbasis PHP + MySQL, cocok untuk XAMPP.
 1. Ekstrak folder `dailyscroll` ke `C:\xampp\htdocs\dailyscroll` (Windows), atau folder `htdocs` milik XAMPP.
 2. Buka XAMPP Control Panel, jalankan **Apache** dan **MySQL**.
 3. Buka `http://localhost/phpmyadmin`.
-4. Pilih tab **Import**, pilih file `database.sql` dari folder proyek, lalu klik **Import/Go**.
+4. Pilih tab **Import**, pilih file `dailyscroll.sql` dari folder proyek, lalu klik **Import/Go**.
 5. Jika username/password MySQL kamu berbeda, ubah bagian koneksi di `config.php`.
 6. Buka `http://localhost/dailyscroll/`.
 
-## File utama
-- `database.sql`: membuat database dan tabel `folders` serta `manhwa`.
-- `config.php`: koneksi PDO ke MySQL.
-- `index.php`: dashboard dan ringkasan.
-- `manhwa.php`: daftar, pencarian, dan filter.
-- `manhwa_form.php`: tambah/edit manhwa.
-- `detail.php`: detail dan aksi edit/hapus.
-- `folders.php`: membuat, mengedit, dan melihat folder.
-- `manhwa_delete.php`, `folder_delete.php`: proses penghapusan.
-- `style.css`: desain responsif.
-- `script.js`: konfirmasi hapus dan fallback cover.
+## Struktur (OOP + MVC ringan)
+- `index.php`, `manhwa.php`, `detail.php`, `manhwa_form.php`, `folders.php`, `*_delete.php`: pintu masuk tipis, hanya memanggil controller.
+- `config.php`: pengaturan database.
+- `app/Core/`: `Database` (PDO singleton), `Session`, `Csrf`, `Request`, `Response`, `View`, `Format`.
+- `app/Models/`: entitas `Manhwa`, `Folder`, dan `ManhwaStatus`.
+- `app/Repositories/`: `ManhwaRepository`, `FolderRepository` (semua query SQL).
+- `app/Validators/ManhwaValidator.php`: validasi input form.
+- `app/Controllers/`: `DashboardController`, `ManhwaController`, `FolderController`.
+- `views/`: template tampilan (Tailwind CSS) beserta `layouts/` dan `partials/`.
+- `assets/`: `css/app.css` (komponen kecil) dan `js/app.js` (carousel, cari, grid/list, konfirmasi hapus).
+- `dailyscroll.sql`: database dan tabel `folders` serta `manhwa`.
 
 ## Catatan
-- Ini starter project lokal, belum memiliki login pengguna. Jangan pasang ke internet publik tanpa menambahkan autentikasi, otorisasi, HTTPS, dan pengamanan deployment.
-- `cover_url` menyimpan URL gambar; aplikasi tidak mengunggah file gambar ke server.
-- `folder_id` boleh kosong. Jika folder dihapus, manhwa tetap ada dan hubungan foldernya dilepas.
+- Tailwind CSS dan font Poppins dimuat lewat CDN, jadi butuh koneksi internet saat membuka web.
+- Kode kompatibel dengan PHP 8.0 ke atas.

@@ -1,0 +1,40 @@
+:root { --brand: #bf0000; --brand-dark: #8a0000; }
+
+body { background: #f7f5f5; }
+
+/* Label merah dengan takik segitiga di bawah (seperti referensi) */
+.tag-notch { position: relative; display: inline-block; }
+.tag-notch::after {
+    content: ""; position: absolute; left: 18px; bottom: -8px;
+    border: 8px solid transparent; border-top-color: var(--brand); border-bottom: 0;
+}
+
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Komponen form & tombol */
+.ds-input {
+    width: 100%; border: 1px solid #d6d3d3; border-radius: .5rem; background: #fff;
+    padding: .65rem .8rem; font-size: .875rem; outline: none; transition: .15s;
+}
+.ds-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(191, 0, 0, .15); }
+.ds-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+    border-radius: 9999px; border: 2px solid transparent; padding: .6rem 1.25rem;
+    font-size: .875rem; font-weight: 600; cursor: pointer; transition: .15s;
+}
+.ds-btn-primary { background: var(--brand); color: #fff; }
+.ds-btn-primary:hover { background: var(--brand-dark); }
+.ds-btn-light { background: #fff; color: #333; border-color: #d6d3d3; }
+.ds-btn-light:hover { border-color: #333; }
+.ds-btn-danger { background: #fff; color: var(--brand); border-color: var(--brand); }
+.ds-btn-danger:hover { background: var(--brand); color: #fff; }
+
+.view-btn { cursor: pointer; border-radius: 9999px; padding: .35rem .9rem; font-size: .8rem; font-weight: 600; color: #555; }
+.view-btn[aria-pressed="true"] { background: var(--brand); color: #fff; }
+
+/* Mode tampilan daftar (list) pada halaman koleksi */
+.list-view { display: flex !important; flex-direction: column; gap: .75rem; }
+.list-view .m-card { display: flex; gap: 1rem; background: #fff; padding: .75rem; border-radius: .75rem; align-items: stretch; }
+.list-view .m-card > a { width: 84px; flex: none; }
+.list-view .m-body { margin-top: 0 !important; flex: 1; min-width: 0; }
